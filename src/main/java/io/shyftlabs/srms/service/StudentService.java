@@ -8,6 +8,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -25,8 +26,20 @@ public class StudentService {
     }
 
     public Student addNewStudent(Student student) {
+        this.checkAndValidateData(student);
         Student savedStudent = this.studentRepository.save(student);
         return savedStudent;
+    }
+
+    public void checkAndValidateData(Student student) {
+        this.getStudentByEmailAddress(student.getEmailAddress()).ifPresent(option -> {
+            throw new IllegalStateException("Student already exists");
+        });
+    }
+
+    public Optional<Student> getStudentByEmailAddress(String emailAddress) {
+        Example<Student> studentExample = Example.of(Student.builder().emailAddress(emailAddress).build());
+        return this.studentRepository.findOne(studentExample);
     }
 
     public List<Student> getListStudents(String firstName, String familyName) {
