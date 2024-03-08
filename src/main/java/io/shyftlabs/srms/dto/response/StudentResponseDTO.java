@@ -1,17 +1,12 @@
 package io.shyftlabs.srms.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import io.shyftlabs.srms.domain.Student;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class StudentResponseDTO {
 
     private Long id;
@@ -23,5 +18,13 @@ public class StudentResponseDTO {
     private Date dateOfBirth;
 
     private String emailAddress;
+
+    public StudentResponseDTO(Student student) {
+        this.id = student.getId();
+        this.firstName = student.getFirstName();
+        this.familyName = student.getFamilyName();
+        this.dateOfBirth = student.getDateOfBirth();
+        this.emailAddress = student.getEmailAddress();
+    }
 
 }

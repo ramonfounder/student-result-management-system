@@ -6,6 +6,7 @@ spring:
     username: srms
     password: secret
     hikari:
+      minimum-idle: 2
       maximum-pool-size: 5
       idle-timeout: 300000
       max-lifetime: 600000
@@ -14,7 +15,6 @@ spring:
     enabled: true
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/srms
-    out-of-order: true
     baseline-on-migrate: true
   jpa:
     open-in-view: false

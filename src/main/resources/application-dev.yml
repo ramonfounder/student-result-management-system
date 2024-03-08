@@ -6,6 +6,7 @@ spring:
     username: ${APP_DB_USERNAME}
     password: ${APP_DB_PASSWORD}
     hikari:
+      minimum-idle: ${HIKARI_MINIMUM_IDLE}
       maximum-pool-size: ${HIKARI_POOL_SIZE}
       idle-timeout: ${HIKARI_IDLE_TIMEOUT}
       max-lifetime: ${HIKARI_MAX_LIFETIME}

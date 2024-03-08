@@ -4,6 +4,7 @@ import io.shyftlabs.srms.domain.Course;
 import io.shyftlabs.srms.dto.request.CourseRequestDTO;
 import io.shyftlabs.srms.dto.response.CourseResponseDTO;
 import io.shyftlabs.srms.service.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,17 +23,23 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CourseResponseDTO> addNewCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
+    public ResponseEntity<CourseResponseDTO> addNewCourse(@Valid @RequestBody CourseRequestDTO courseRequestDTO) {
         Course newCourse = courseRequestDTO.convertToCourse();
-        Course addedNewCourse = courseService.addNewCourse(newCourse);
+        Course addedNewCourse = this.courseService.addNewCourse(newCourse);
         CourseResponseDTO courseResponseDTO = new CourseResponseDTO(addedNewCourse);
         return ResponseEntity.ok(courseResponseDTO);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<CourseResponseDTO>> coursesList(@RequestParam String courseName) {
-        List<Course> courses = courseService.getListCourses(courseName);
+    public ResponseEntity<List<CourseResponseDTO>> getListCourses(@RequestParam(required = false) String courseName) {
+        List<Course> courses = this.courseService.getListCourses(courseName);
         List<CourseResponseDTO> courseResponseDTOList = courses.stream().map(CourseResponseDTO::new).toList();
         return ResponseEntity.ok(courseResponseDTOList);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
+        this.courseService.deleteCourse(id);
+        return ResponseEntity.ok().build();
     }
 }
