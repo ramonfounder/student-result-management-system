@@ -2,7 +2,7 @@
 version: '3'
 services:
   mysql:
-    image: 'mysql:8.3.0'
+    image: 'mysql:8.1'
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -17,7 +17,7 @@ services:
     ports:
       - "6379:6379"
 #
-#  java-application:
+# application:
 #    build: .
 #    environment:
 #      DB_URL: ${JAVA_APP_DB_URL}

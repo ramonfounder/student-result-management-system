@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResultRequestDTO {
 
-    private Long id;
 
     @NotNull(message = "Course Id cannot be null")
     private Long courseId;

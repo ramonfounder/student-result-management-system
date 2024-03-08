@@ -17,7 +17,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class StudentRequestDTO {
 
-    private Long id;
 
     @NotBlank(message = "First name cannot be blank")
     private String firstName;

@@ -3,6 +3,8 @@ package io.shyftlabs.srms.service;
 import io.shyftlabs.srms.domain.Course;
 import io.shyftlabs.srms.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,16 @@ public class CourseService {
     }
 
     public Course addNewCourse(Course course) {
-        return null;
+        Course savedCourse = this.courseRepository.save(course);
+        return savedCourse;
     }
 
     public List<Course> getListCourses(String courseName) {
-        return null;
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING) // Use CONTAINING for "like" behavior
+                .withIgnoreCase(true);
+        Example<Course> courseExample = Example.of(Course.builder().courseName(courseName).build(), matcher);
+        List<Course> courses = this.courseRepository.findAll(courseExample);
+        return courses;
     }
 }
