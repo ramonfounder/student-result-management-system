@@ -21,13 +21,13 @@ create table if not exists student
     date_of_birth datetime(6)  not null,
     email_address varchar(255) not null,
     first_name    varchar(255) not null,
-    last_name     varchar(255) not null,
+    family_name     varchar(255) not null,
     constraint UK_68piymbjmju4vef8wax27ihox
         unique (email_address)
 );
 
 create index name_index
-    on student (first_name, last_name);
+    on student (first_name, family_name);
 
 create table if not exists results
 (
@@ -65,4 +65,21 @@ create table if not exists results
              id
                 )
 );
+
+alter table results
+    drop foreign key FKg30pq3ucxw909sr3u1o8e7klg;
+
+alter table results
+    add constraint FKg30pq3ucxw909sr3u1o8e7klg
+        foreign key (course_id) references course (id)
+            on update cascade on delete cascade;
+
+alter table results
+    drop foreign key FKmipijxw5mdlc42ihg4brlp1fo;
+
+alter table results
+    add constraint FKmipijxw5mdlc42ihg4brlp1fo
+        foreign key (student_id) references student (id)
+            on update cascade on delete cascade;
+
 

@@ -19,6 +19,11 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
+
+    public Course getCourseById(Long id) {
+        return this.courseRepository.findById(id).orElseThrow();
+    }
+
     public Course addNewCourse(Course course) {
         Course savedCourse = this.courseRepository.save(course);
         return savedCourse;
