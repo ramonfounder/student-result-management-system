@@ -29,9 +29,13 @@ public class StudentService {
         return savedStudent;
     }
 
-    public List<Student> getListCourses(String firstName, String familyName) {
+    public List<Student> getListStudents(String firstName, String familyName) {
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase(true).withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Student> studentExample = Example.of(Student.builder().firstName(firstName).familyName(familyName).build(), matcher);
         return this.studentRepository.findAll(studentExample);
+    }
+
+    public void deleteStudent(Long id) {
+        this.studentRepository.deleteById(id);
     }
 }

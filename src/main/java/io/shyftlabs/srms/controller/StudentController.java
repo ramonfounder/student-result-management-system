@@ -33,11 +33,17 @@ public class StudentController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<StudentResponseDTO>> coursesList(@RequestParam(required = false) String firstName,
-                                                                @RequestParam(required = false) String familyName) {
-        List<Student> students = this.studentService.getListCourses(firstName, familyName);
+    public ResponseEntity<List<StudentResponseDTO>> getListStudents(@RequestParam(required = false) String firstName,
+                                                                    @RequestParam(required = false) String familyName) {
+        List<Student> students = this.studentService.getListStudents(firstName, familyName);
         List<StudentResponseDTO> studentResponseDTOList = students.stream().map(StudentResponseDTO::new).toList();
         return ResponseEntity.ok(studentResponseDTOList);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        this.studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

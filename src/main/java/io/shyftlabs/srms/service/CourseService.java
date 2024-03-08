@@ -30,11 +30,14 @@ public class CourseService {
     }
 
     public List<Course> getListCourses(String courseName) {
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING) // Use CONTAINING for "like" behavior
+        ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING) // Use CONTAINING for "like" behavior
                 .withIgnoreCase(true);
         Example<Course> courseExample = Example.of(Course.builder().courseName(courseName).build(), matcher);
         List<Course> courses = this.courseRepository.findAll(courseExample);
         return courses;
+    }
+
+    public void deleteCourse(Long id) {
+        this.courseRepository.deleteById(id);
     }
 }

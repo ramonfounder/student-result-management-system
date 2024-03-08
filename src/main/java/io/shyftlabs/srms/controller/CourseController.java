@@ -25,15 +25,20 @@ public class CourseController {
     @PostMapping("/add")
     public ResponseEntity<CourseResponseDTO> addNewCourse(@Valid @RequestBody CourseRequestDTO courseRequestDTO) {
         Course newCourse = courseRequestDTO.convertToCourse();
-        Course addedNewCourse = courseService.addNewCourse(newCourse);
+        Course addedNewCourse = this.courseService.addNewCourse(newCourse);
         CourseResponseDTO courseResponseDTO = new CourseResponseDTO(addedNewCourse);
         return ResponseEntity.ok(courseResponseDTO);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<CourseResponseDTO>> coursesList(@RequestParam(required = false) String courseName) {
-        List<Course> courses = courseService.getListCourses(courseName);
+    public ResponseEntity<List<CourseResponseDTO>> getListCourses(@RequestParam(required = false) String courseName) {
+        List<Course> courses = this.courseService.getListCourses(courseName);
         List<CourseResponseDTO> courseResponseDTOList = courses.stream().map(CourseResponseDTO::new).toList();
         return ResponseEntity.ok(courseResponseDTOList);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCourse(Long id) {
+        this.courseService.deleteCourse(id);
     }
 }
