@@ -42,9 +42,9 @@ public class StudentService {
         return this.studentRepository.findOne(studentExample);
     }
 
-    public List<Student> getListStudents(String firstName, String familyName) {
+    public List<Student> getListStudents(String firstName, String familyName, String emailAddress) {
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase(true).withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example<Student> studentExample = Example.of(Student.builder().firstName(firstName).familyName(familyName).build(), matcher);
+        Example<Student> studentExample = Example.of(Student.builder().firstName(firstName).familyName(familyName).emailAddress(emailAddress).build(), matcher);
         return this.studentRepository.findAll(studentExample);
     }
 

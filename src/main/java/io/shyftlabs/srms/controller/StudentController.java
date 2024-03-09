@@ -34,8 +34,10 @@ public class StudentController {
 
     @GetMapping("/list")
     public ResponseEntity<List<StudentResponseDTO>> getListStudents(@RequestParam(required = false) String firstName,
-                                                                    @RequestParam(required = false) String familyName) {
-        List<Student> students = this.studentService.getListStudents(firstName, familyName);
+                                                                    @RequestParam(required = false) String familyName,
+                                                                    @RequestParam(required = false) String emailAddress) {
+
+        List<Student> students = this.studentService.getListStudents(firstName, familyName, emailAddress);
         List<StudentResponseDTO> studentResponseDTOList = students.stream().map(StudentResponseDTO::new).toList();
         return ResponseEntity.ok(studentResponseDTOList);
     }
