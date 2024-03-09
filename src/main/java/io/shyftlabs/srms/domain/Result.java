@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Result class to handle the result entity
+ */
 @Data
 @Entity
 @Builder

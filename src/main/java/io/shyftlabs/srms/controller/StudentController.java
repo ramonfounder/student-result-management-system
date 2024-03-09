@@ -24,6 +24,9 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    /**
+     * Add a new student
+     */
     @PostMapping("/add")
     public ResponseEntity<StudentResponseDTO> addNewStudent(@Valid @RequestBody StudentRequestDTO studentRequestDTO) {
         Student newStudent = studentRequestDTO.convertToStudent();
@@ -32,6 +35,9 @@ public class StudentController {
         return ResponseEntity.ok(studentResponseDTO);
     }
 
+    /**
+     * Get a list of students
+     */
     @GetMapping("/list")
     public ResponseEntity<List<StudentResponseDTO>> getListStudents(@RequestParam(required = false) String firstName,
                                                                     @RequestParam(required = false) String familyName,
@@ -42,6 +48,9 @@ public class StudentController {
         return ResponseEntity.ok(studentResponseDTOList);
     }
 
+    /**
+     * Delete a student by id
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         this.studentService.deleteStudent(id);

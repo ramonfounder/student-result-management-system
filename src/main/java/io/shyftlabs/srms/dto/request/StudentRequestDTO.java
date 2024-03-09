@@ -14,6 +14,9 @@ import org.aspectj.lang.annotation.After;
 import java.util.Date;
 
 
+/**
+ * StudentRequestDTO class to handle the request for creating a new student
+ */
 @Data
 @Builder
 @AllArgsConstructor

@@ -1,12 +1,19 @@
 package io.shyftlabs.srms.dto.response;
 
 import io.shyftlabs.srms.domain.Student;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 
+/**
+ * StudentResponseDTO class to handle the response for Student
+ */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentResponseDTO {
 
     private Long id;

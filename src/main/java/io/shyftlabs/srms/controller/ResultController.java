@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * ResultController class to handle the requests for Result
+ */
 @RestController
 @RequestMapping("/api/results")
 public class ResultController {
@@ -24,6 +27,9 @@ public class ResultController {
     }
 
 
+    /**
+     * Add a new result
+     */
     @PostMapping("/add")
     public ResponseEntity<ResultResponseDTO> addNewResult(@Valid @RequestBody ResultRequestDTO resultRequestDTO) {
         Result convertedToResult = resultRequestDTO.convertToResult();
@@ -33,6 +39,9 @@ public class ResultController {
     }
 
 
+    /**
+     * Get a list of results
+     */
     @GetMapping("/list")
     public ResponseEntity<List<ResultResponseDTO>> getListResults() {
         List<Result> results = this.resultService.getListResults();
@@ -40,6 +49,9 @@ public class ResultController {
         return ResponseEntity.ok(resultResponseDTOList);
     }
 
+    /**
+     * Delete a result by id
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteResult(@PathVariable Long id) {
         this.resultService.deleteResult(id);

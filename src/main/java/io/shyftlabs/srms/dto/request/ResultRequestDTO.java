@@ -12,6 +12,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * ResultRequestDTO class to handle the request for creating a new result
+ */
 @Data
 @Builder
 @AllArgsConstructor

@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * Course class to handle the course entity
+ */
 @Data
 @Entity
 @Builder
