@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * CourseRequestDTO class to handle the request for creating a new course
+ */
 @Data
 @Builder
 @AllArgsConstructor

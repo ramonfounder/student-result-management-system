@@ -9,13 +9,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Student class to handle the student entity
+ */
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "student", indexes = {
-        @Index(columnList = "firstName, lastName", name = "name_index")
+        @Index(columnList = "firstName, familyName", name = "name_index")
 })
 public class Student {
 

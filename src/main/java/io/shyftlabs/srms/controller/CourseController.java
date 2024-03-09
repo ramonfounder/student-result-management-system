@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * CourseController class to handle the requests for Course
+ */
 @RestController
 @RequestMapping("/api/courses")
 public class CourseController {
@@ -22,6 +25,9 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+    /**
+     * Add a new course
+     */
     @PostMapping("/add")
     public ResponseEntity<CourseResponseDTO> addNewCourse(@Valid @RequestBody CourseRequestDTO courseRequestDTO) {
         Course newCourse = courseRequestDTO.convertToCourse();
@@ -30,6 +36,9 @@ public class CourseController {
         return ResponseEntity.ok(courseResponseDTO);
     }
 
+    /**
+     * Get a list of courses
+     */
     @GetMapping("/list")
     public ResponseEntity<List<CourseResponseDTO>> getListCourses(@RequestParam(required = false) String courseName) {
         List<Course> courses = this.courseService.getListCourses(courseName);
@@ -37,6 +46,9 @@ public class CourseController {
         return ResponseEntity.ok(courseResponseDTOList);
     }
 
+    /**
+     * Delete a course by id
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
         this.courseService.deleteCourse(id);
