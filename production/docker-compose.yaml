@@ -1,0 +1,29 @@
+#In production mode, a specific version of the image should be used for stability and security reasons.
+version: '3'
+services:
+  db:
+    image: 'mysql:8.1'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${APP_DB_NAME}
+      MYSQL_USER: ${APP_DB_USERNAME}
+      MYSQL_PASSWORD: ${APP_DB_PASSWORD}
+    ports:
+      - "3306:3306"
+
+  application:
+    image: student-result-management-system:1.0.0
+    environment:
+      APP_DB_URL: ${APP_DB_URL}
+      APP_DB_USERNAME: ${APP_DB_USERNAME}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      HIKARI_MINIMUM_IDLE: ${HIKARI_MINIMUM_IDLE}
+      HIKARI_POOL_SIZE: ${HIKARI_POOL_SIZE}
+      HIKARI_IDLE_TIMEOUT: ${HIKARI_IDLE_TIMEOUT}
+      HIKARI_MAX_LIFETIME: ${HIKARI_MAX_LIFETIME}
+      HIKARI_CONNECTION_TIMEOUT: ${HIKARI_CONNECTION_TIMEOUT}
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "8080:8080"

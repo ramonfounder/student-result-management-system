@@ -13,18 +13,18 @@ spring:
       connection-timeout: 10000
   flyway:
     enabled: true
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/srms
+    driver-class-name: com.mysql.cj.jdbc.Driver
     baseline-on-migrate: true
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: none
-  data:
-    redis:
-      password: secret
-      host: localhost
-      port: 6379
 server:
   port: 8080
+logging:
+  level:
+    root: info
+    sql: info
+    web: info
 

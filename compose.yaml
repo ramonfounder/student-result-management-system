@@ -1,32 +1,12 @@
 #In production mode, a specific version of the image should be used for stability and security reasons.
 version: '3'
 services:
-  mysql:
+  db:
     image: 'mysql:8.1'
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${APP_DB_NAME}
+      MYSQL_USER: ${APP_DB_USERNAME}
+      MYSQL_PASSWORD: ${APP_DB_PASSWORD}
     ports:
       - "3306:3306"
-
-  redis:
-    image: redis:latest
-    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
-    ports:
-      - "6379:6379"
-#
-# application:
-#    build: .
-#    environment:
-#      DB_URL: ${JAVA_APP_DB_URL}
-#      DB_USERNAME: ${JAVA_APP_DB_USERNAME}
-#      DB_PASSWORD: ${JAVA_APP_DB_PASSWORD}
-#      REDIS_HOST: ${JAVA_APP_REDIS_HOST}
-#      REDIS_PASSWORD: ${JAVA_APP_REDIS_PASSWORD}
-#    depends_on:
-#      - mysql
-#      - redis
-#    ports:
-#      - "8080:8080"

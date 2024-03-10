@@ -44,7 +44,7 @@ public class CourseControllerTest extends AbstractTest {
      */
     @Test
     public void GivenValidInput_WhenAddCourse_ThenCreateCourse() throws Exception {
-        String courseName = "Test";
+        String courseName = "Course 1";
         String request = this.objectMapper.writeValueAsString(CourseRequestDTO.builder().courseName(courseName).build());
         MvcResult result = this.mockMvc.perform(post("/api/courses/add").contentType(MediaType.APPLICATION_JSON).content(request))
                 .andDo(print())

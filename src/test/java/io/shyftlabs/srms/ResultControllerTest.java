@@ -62,15 +62,15 @@ class ResultControllerTest extends AbstractTest {
         LocalDate localDate = LocalDate.of(1990, 1, 1);
         Date dateOfBirth = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Student student = this.studentRepository.save(this.studentRepository.save(Student.builder()
-                .firstName("Test").familyName("Testy").emailAddress("Test@gmail.com")
+                .firstName("Student2").familyName("Student family 2").emailAddress("Student2@gmail.com")
                 .dateOfBirth(dateOfBirth)
                 .build()));
-        Course course = this.courseRepository.save(this.courseRepository.save(Course.builder().courseName("Test").build()));
+        Course course = this.courseRepository.save(this.courseRepository.save(Course.builder().courseName("Course 2").build()));
         String request = this.objectMapper.writeValueAsString(ResultRequestDTO.builder().studentId(student.getId()).courseId(course.getId()).score("A").build());
         MvcResult mvcResult = this.mockMvc.perform(post("/api/results/add").contentType(MediaType.APPLICATION_JSON).content(request))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.courseName").value("Test"))
+                .andExpect(jsonPath("$.courseName").value("Course 2"))
                 .andReturn();
         String response = mvcResult.getResponse().getContentAsString();
         ResultResponseDTO dto = this.objectMapper.readValue(response, ResultResponseDTO.class);
