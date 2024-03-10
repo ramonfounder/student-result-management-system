@@ -4,6 +4,14 @@ This application offers a
 comprehensive solution for educational institutions to add and manage students, courses, and their results efficiently.
 Built using Java and Spring Boot, it leverages Maven for dependency management, Docker for containerization, MySQL for persistent storage, Flyway for database migration, and Swagger for API documentation.
 
+## Technical Documents
+
+The Technical documents for this project, including the use case document, technical document, and ER diagram, are available on Miro.
+
+You can access these documents by following this link: [https://miro.com/app/board/uXjVNj9H-9U=/?share_link_id=830439456919](https://miro.com/app/board/uXjVNj9H-9U=/?share_link_id=830439456919)
+
+These documents provide a visual representation of the system's architecture and a detailed explanation of how different components of the system interact with each other. They serve as a guide for understanding the overall structure and functionality of the application.
+
 ### Structure
 
 > Check Here ---> [https://tree.nathanfriend.io/](https://tree.nathanfriend.io/) <---
