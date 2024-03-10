@@ -45,9 +45,9 @@ public class StudentControllerTest extends AbstractTest {
      */
     @Test
     public void GivenValidInput_WhenAddStudent_ThenCreateStudent() throws Exception {
-        String firstname = "Test";
-        String familyName = "Testy";
-        String emailAddress = "test@gmail.com";
+        String firstname = "Student1";
+        String familyName = "Student family 1";
+        String emailAddress = "Student1@gmail.com";
         LocalDate localDate = LocalDate.of(1990, 1, 1);
         Date dateOfBirth = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         String request = this.objectMapper.writeValueAsString(StudentRequestDTO
